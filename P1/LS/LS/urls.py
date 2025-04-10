@@ -16,9 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static  # Faltaba importar esto
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing.urls')), 
-    
+    path('search/', include('search.urls')), 
+    path("recomendaciones/", include("chat_recomendaciones.urls")),
+    path('', views.inicio, name='inicio'),
+    path('vendedor/', views.perfil_view, name='perfil'),
+    path('chat/', include('chat.urls')),
 ]
+
+# Servir archivos de la carpeta media en desarrollo
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

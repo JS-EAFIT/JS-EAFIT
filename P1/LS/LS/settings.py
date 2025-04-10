@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
+DEEPAI_API_KEY = "991ee198-7927-41c0-9c2b-b7cb00069fc4"
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "landing",
+    'landing',
+    'search',
+    'chat_recomendaciones',
+    'chat',
+    'Vendedor', 
 ]
 
 MIDDLEWARE = [
@@ -52,6 +57,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'LS.urls'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 TEMPLATES = [
     {
@@ -126,3 +137,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
